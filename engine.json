@@ -1,10 +1,10 @@
 {
   "id": "default",
   "description": "Default settings",
-  "engineFactory": "org.template.similarity.TextSimilarityEngine",
+  "engineFactory": "com.kolibero.TextSimilarityEngine",
   "datasource": {
     "params" : {
-      "appName": "INVALID_APP_NAME"
+      "appName": "textsim"
     }
   },
   "algorithms": [
@@ -12,10 +12,10 @@
       "name": "tsimilarity",
       "params": {
         "seed" : 75,
-        "minCount": 2,
-	"learningRate": 0.0,
-	"numIterations": 1,
-	"vectorSize": 100
+        "minCount": 1,
+        "learningRate": 0.0,
+	      "numIterations": 1,
+	      "vectorSize": 100
       }
     }
   ]

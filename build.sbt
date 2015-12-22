@@ -2,7 +2,7 @@ import AssemblyKeys._
 
 assemblySettings
 
-name := "pio-template-kmeans-clustering"
+name := "pio-template-text-similarity"
 
 organization := "com.kolibero"
 
