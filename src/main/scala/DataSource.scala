@@ -1,8 +1,8 @@
 package org.template.similarity
 
 import io.prediction.controller.PDataSource
-//import io.prediction.controller.EmptyEvaluationInfo
-//import io.prediction.controller.EmptyActualResult
+import io.prediction.controller.EmptyEvaluationInfo
+import io.prediction.controller.EmptyActualResult
 import io.prediction.controller.Params
 import io.prediction.data.store.PEventStore
 import org.apache.spark.mllib.linalg.Vector
