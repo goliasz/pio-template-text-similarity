@@ -17,7 +17,7 @@ Set application name to “textsim”<br>
 <br>
 root@pio1:/MyEngine/textsim# pio build --verbose<br>
 root@pio1:/MyEngine/textsim# pio app new textsim<br>
-root@pio1:/MyEngine/textsim# sh ./data/import_test.sh <YOUR APP ID from "pio app new textsim" output><br>
+root@pio1:/MyEngine/textsim# sh ./data/import_test.sh [YOUR APP ID from "pio app new textsim" output]<br>
 root@pio1:/MyEngine/textsim# pio train<br>
 root@pio1:/MyEngine/textsim# pio deploy --port 8000<br>
 
@@ -27,7 +27,7 @@ root@pio1:/MyEngine/textsim# pio deploy --port 8000<br>
 curl -i -X GET http://localhost:7070<br>
 
 ### Event Server: get all events 
-curl -i -X GET http://localhost:7070/events.json?accessKey=<YOUR ACCESS KEY FROM "pio app new textsim" output><br>
+curl -i -X GET http://localhost:7070/events.json?accessKey=[YOUR ACCESS KEY FROM "pio app new textsim" output]<br>
 
 ### Query similarity score for a text a little bit similar to id:6
 curl -X POST -H "Content-Type: application/json" -d '{"doc": "DJs flock by when MTV ax quiz prog. Five quacking zephyrs jolt my wax bed.", "limit", 3}' http://localhost:8000/queries.json<br>
