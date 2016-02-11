@@ -13,9 +13,11 @@
       "params": {
         "seed" : 75,
         "minCount": 1,
-        "learningRate": 0.0,
+        "learningRate": 0.025,
 	      "numIterations": 1,
-	      "vectorSize": 100
+	      "vectorSize": 100,
+        "showText": false,
+        "showDesc": false
       }
     }
   ]
