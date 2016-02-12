@@ -28,7 +28,7 @@ import org.apache.spark.rdd.RDD
 
 import grizzled.slf4j.Logger
 
-case class DataSourceParams(appName: String, respStoreDesc Boolean) extends Params
+case class DataSourceParams(appName: String) extends Params
 
 class DataSource(val dsp: DataSourceParams)
   extends PDataSource[TrainingData, EmptyEvaluationInfo, Query, EmptyActualResult] {
@@ -38,10 +38,10 @@ class DataSource(val dsp: DataSourceParams)
   override
   def readTraining(sc: SparkContext): TrainingData = {
     println("Gathering data from event server.")
-    val docsRDD: RDD[(String,String)] = PEventStore.aggregateProperties(
+    val docsRDD: RDD[(String,String,String,String)] = PEventStore.aggregateProperties(
       appName = dsp.appName,
       entityType = "doc",
-      required = Some(List("id","text","desc")))(sc).map { case (entityId, properties) =>
+      required = Some(List("id","text","extTrainWords","desc")))(sc).map { case (entityId, properties) =>
         try {
 	  (properties.get[String]("id"), properties.get[String]("text"), properties.getOrElse[String]("extTrainWords",""), properties.getOrElse[String]("desc",""))
         } catch {
