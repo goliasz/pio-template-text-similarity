@@ -39,6 +39,10 @@ If set to true query result displays "desc" field from training events.
 
 If set to true composite training is used. Concatenated "text" and "extTrainWords" are source of training data. If set to false only "text" field is used as source of data for training.
 
+### storeClearText
+
+Default: false. If set to true all texts used for training are stored inside the model together with text vectors. Model is kept in memory. If training set is huge we are in danger of filling up significant portion of memory. If set to false model is very memory efficient. Only vectors of doubles are stored. By default vectors have 100 dimentions. This is configurable using "vectorSize". 
+
 ## Docker Part
 ```
 docker pull goliasz/docker-predictionio
@@ -50,7 +54,7 @@ docker run --hostname tc1 --name tc1 -it goliasz/docker-predictionio /bin/bash
 root@tc1:/# pio-start-all
 root@tc1:/# mkdir MyEngine
 root@tc1:/# cd MyEngine
-root@tc1:/MyEngine# pio template get goliasz/pio-template-text-similarity --version "0.5" textsim
+root@tc1:/MyEngine# pio template get goliasz/pio-template-text-similarity --version "0.7" textsim
 root@tc1:/MyEngine# cd textsim
 root@tc1:/MyEngine/textsim# vi engine.json
 ```
