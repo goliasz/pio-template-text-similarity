@@ -54,7 +54,7 @@ class TextSimilarityAlgorithm(val ap: AlgorithmParams) extends P2LAlgorithm[Prep
   def train(sc: SparkContext, data: PreparedData): TSModel = {
     println("Training text similarity model.")
 
-    val art1 = data.docs.map(x=>((x._2+{if (useExtTrainWords) " "+x._3 else ""}).toLowerCase.replace("."," ").split(" ").filter(k => !stopwords.contains(k)).map(normalizet).filter(_.trim.length>=ap.minTokenSize).toSeq, (x._1,x._2,x._3,x._4))).filter(_._1.size>0)
+    val art1 = data.docs.map(x=>((x._2+{if (ap.useExtTrainWords) " "+x._3 else ""}).toLowerCase.replace("."," ").split(" ").filter(k => !stopwords.contains(k)).map(normalizet).filter(_.trim.length>=ap.minTokenSize).toSeq, (x._1,x._2,x._3,x._4))).filter(_._1.size>0)
     
     val word2vec = new Word2Vec()
     word2vec.setSeed(ap.seed)
