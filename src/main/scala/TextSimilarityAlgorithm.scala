@@ -36,7 +36,8 @@ case class AlgorithmParams(
   val minTokenSize: Int,
   val showText: Boolean,
   val showDesc: Boolean,
-  val useExtTrainWords: Boolean
+  val useExtTrainWords: Boolean,
+  val storeClearText: Boolean
 ) extends Params
 
 class TSModel(
@@ -65,7 +66,7 @@ class TextSimilarityAlgorithm(val ap: AlgorithmParams) extends P2LAlgorithm[Prep
 	
     val model = word2vec.fit(art1.map(_._1).cache)
 
-    val art_pairs = art1.map(x => (x._2, new DenseVector(divArray(x._1.map(m => wordToVector(m, model, ap.vectorSize).toArray).reduceLeft(sumArray),x._1.length)).asInstanceOf[Vector]))	
+    val art_pairs = art1.map(x => ( {if (ap.storeClearText) (x._2._1,x._2._2,x._2._3,x._2._4) else (x._2._1,"","","")}, new DenseVector(divArray(x._1.map(m => wordToVector(m, model, ap.vectorSize).toArray).reduceLeft(sumArray),x._1.length)).asInstanceOf[Vector]))	
 
     val normalizer1 = new Normalizer()
     val art_pairsb = art_pairs.map(x=>(x._1, normalizer1.transform(x._2))).map(x=>(x._1,{new breeze.linalg.DenseVector(x._2.toArray)}))	

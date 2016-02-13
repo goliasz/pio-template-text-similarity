@@ -19,7 +19,8 @@
         "minTokenSize": 3, 
         "showText": false,
         "showDesc": false,
-        "useExtTrainWords": true
+        "useExtTrainWords": true,
+        "storeClearText": false   
       }
     }
   ]
