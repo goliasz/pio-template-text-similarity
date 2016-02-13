@@ -14,8 +14,9 @@
         "seed" : 75,
         "minCount": 1,
         "learningRate": 0.025,
-	      "numIterations": 1,
-	      "vectorSize": 100,
+        "numIterations": 1,
+        "vectorSize": 100,
+        "minTokenSize": 3, 
         "showText": false,
         "showDesc": false
       }

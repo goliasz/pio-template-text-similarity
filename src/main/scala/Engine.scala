@@ -31,8 +31,8 @@ case class PredictedResult(
 case class DocScore(
   score: Double,
   id: String,
-  text: String,
-  desc: String	
+  similarText: String,
+  textDesc: String	
 ) extends Serializable
 
 object TextSimilarityEngine extends EngineFactory {
