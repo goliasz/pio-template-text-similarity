@@ -18,7 +18,8 @@
         "vectorSize": 100,
         "minTokenSize": 3, 
         "showText": false,
-        "showDesc": false
+        "showDesc": false,
+        "useExtTrainWords": true
       }
     }
   ]
