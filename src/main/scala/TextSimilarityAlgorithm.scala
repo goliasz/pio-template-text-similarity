@@ -69,7 +69,7 @@ class TextSimilarityAlgorithm(val ap: AlgorithmParams) extends P2LAlgorithm[Prep
       val sqlContext = new SQLContext(sc)      
 
       val df = sqlContext.read.parquet(data.word2VecTrainFile)
-      val aa = df.select("properties").rdd.map(x=>(x.getStruct(0).getString(3).toLowerCase.replace("."," ").split(" ").filter(k => !stopwords.contains(k)).map(normalizet).filter(_.trim.length>=ap.minTokenSize).toSeq)).filter(_._1.size>0)
+      val aa = df.select("properties").rdd.map(x=>(x.getStruct(0).getString(3).toLowerCase.replace("."," ").split(" ").filter(k => !stopwords.contains(k)).map(normalizet).filter(_.trim.length>=ap.minTokenSize).toSeq)).filter(_.size>0)
 
       aa.cache
     }
