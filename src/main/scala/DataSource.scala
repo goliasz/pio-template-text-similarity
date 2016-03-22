@@ -58,5 +58,6 @@ class DataSource(val dsp: DataSourceParams)
 }
 
 class TrainingData(
-  val docs: RDD[(String, String, String, String)]
+  val docs: RDD[(String, String, String, String)],
+  val word2VecTrainFile: String
 ) extends Serializable

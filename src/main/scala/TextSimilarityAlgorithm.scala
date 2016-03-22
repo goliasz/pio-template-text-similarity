@@ -26,6 +26,7 @@ import org.apache.spark.mllib.feature.{Word2Vec,Word2VecModel}
 import grizzled.slf4j.Logger
 import org.apache.spark.mllib.feature.Normalizer
 import org.apache.spark.mllib.linalg.DenseVector
+import org.apache.spark.sql.SQLContext
 
 case class AlgorithmParams(
   val seed: Int,
@@ -63,8 +64,17 @@ class TextSimilarityAlgorithm(val ap: AlgorithmParams) extends P2LAlgorithm[Prep
     word2vec.setLearningRate(ap.learningRate)
     word2vec.setNumIterations(ap.numIterations)
     word2vec.setVectorSize(ap.vectorSize)	
-	
-    val model = word2vec.fit(art1.map(_._1).cache)
+
+    val vwtrain = if (data.word2VecTrainFile=="") art1.map(_._1).cache else {
+      val sqlContext = new SQLContext(sc)      
+
+      val df = sqlContext.read.parquet(data.word2VecTrainFile)
+      val aa = df.select("properties").rdd.map(x=>(x.getStruct(0).getString(3).toLowerCase.replace("."," ").split(" ").filter(k => !stopwords.contains(k)).map(normalizet).filter(_.trim.length>=ap.minTokenSize).toSeq)).filter(_._1.size>0)
+
+      aa.cache
+    }
+
+    val model = word2vec.fit(vwtrain)
 
     val art_pairs = art1.map(x => ( {if (ap.storeClearText) (x._2._1,x._2._2,x._2._3,x._2._4) else (x._2._1,"","","")}, new DenseVector(divArray(x._1.map(m => wordToVector(m, model, ap.vectorSize).toArray).reduceLeft(sumArray),x._1.length)).asInstanceOf[Vector]))	
 
