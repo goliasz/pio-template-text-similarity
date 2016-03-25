@@ -54,7 +54,7 @@ docker run --hostname tc1 --name tc1 -it goliasz/docker-predictionio /bin/bash
 root@tc1:/# pio-start-all
 root@tc1:/# mkdir MyEngine
 root@tc1:/# cd MyEngine
-root@tc1:/MyEngine# pio template get goliasz/pio-template-text-similarity --version "0.7" textsim
+root@tc1:/MyEngine# pio template get goliasz/pio-template-text-similarity --version "0.8" textsim
 root@tc1:/MyEngine# cd textsim
 root@tc1:/MyEngine/textsim# vi engine.json
 ```
@@ -85,6 +85,9 @@ curl -i -X GET http://localhost:7070/events.json?accessKey=[YOUR ACCESS KEY FROM
 ```
 curl -X POST -H "Content-Type: application/json" -d '{"doc": "DJs flock by when MTV ax quiz prog. Five quacking zephyrs jolt my wax bed.", "limit", 3}' http://localhost:8000/queries.json
 ```
+
+## Requirements
+Template in version >= 0.8 requires Spark 1.6.1. You can get PredictionIO bundled with Spark 1.6.1 here https://hub.docker.com/r/goliasz/docker-predictionio-dev/
 
 ## License
 This Software is licensed under the Apache Software Foundation version 2 licence found here: http://www.apache.org/licenses/LICENSE-2.0
