@@ -28,7 +28,7 @@ import org.apache.spark.rdd.RDD
 
 import grizzled.slf4j.Logger
 
-case class DataSourceParams(appName: String) extends Params
+case class DataSourceParams(appName: String, word2VecTrainFile: String) extends Params
 
 class DataSource(val dsp: DataSourceParams)
   extends PDataSource[TrainingData, EmptyEvaluationInfo, Query, EmptyActualResult] {
@@ -53,10 +53,11 @@ class DataSource(val dsp: DataSourceParams)
         }
       }
 		
-    new TrainingData(docsRDD)
+    new TrainingData(docs = docsRDD, word2VecTrainFile = dsp.word2VecTrainFile)
   }
 }
 
 class TrainingData(
-  val docs: RDD[(String, String, String, String)]
+  val docs: RDD[(String, String, String, String)],
+  val word2VecTrainFile: String
 ) extends Serializable

@@ -4,7 +4,8 @@
   "engineFactory": "org.template.similarity.TextSimilarityEngine",
   "datasource": {
     "params" : {
-      "appName": "INVALID_APP_NAME"
+      "appName": "INVALID_APP_NAME",
+      "word2VecTrainFile":"" 
     }
   },
   "algorithms": [
@@ -20,7 +21,7 @@
         "showText": false,
         "showDesc": false,
         "useExtTrainWords": true,
-        "storeClearText": false   
+        "storeClearText": false
       }
     }
   ]
