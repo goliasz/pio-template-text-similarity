@@ -15,7 +15,7 @@ package org.template.similarity
  * limitations under the License.
  */
 
-import io.prediction.controller.{Engine,EngineFactory}
+import org.apache.predictionio.controller.{Engine,EngineFactory}
 
 case class Query(
   val doc: String,

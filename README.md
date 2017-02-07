@@ -54,7 +54,7 @@ docker run --hostname tc1 --name tc1 -it goliasz/docker-predictionio /bin/bash
 root@tc1:/# pio-start-all
 root@tc1:/# mkdir MyEngine
 root@tc1:/# cd MyEngine
-root@tc1:/MyEngine# pio template get goliasz/pio-template-text-similarity --version "0.8" textsim
+root@tc1:/MyEngine# pio template get goliasz/pio-template-text-similarity --version "0.9" textsim
 root@tc1:/MyEngine# cd textsim
 root@tc1:/MyEngine/textsim# vi engine.json
 ```
@@ -63,7 +63,7 @@ Set application name to “textsim”
 
 ```
 root@pio1:/MyEngine/textsim# pio build --verbose
-root@pio1:/MyEngine/textsim# pio app new textsim
+root@pio1:/MyEngine/textsim# pio app new textsim --access-key 1234
 root@pio1:/MyEngine/textsim# sh ./data/import_test.sh 1
 root@pio1:/MyEngine/textsim# pio train
 root@pio1:/MyEngine/textsim# pio deploy --port 8000 &
