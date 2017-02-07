@@ -54,7 +54,7 @@ docker run --hostname tc1 --name tc1 -it goliasz/docker-predictionio /bin/bash
 root@tc1:/# pio-start-all
 root@tc1:/# mkdir MyEngine
 root@tc1:/# cd MyEngine
-root@tc1:/MyEngine# pio template get goliasz/pio-template-text-similarity --version "0.9" textsim
+root@tc1:/MyEngine# pio template get goliasz/pio-template-text-similarity --version "0.9.1" textsim
 root@tc1:/MyEngine# cd textsim
 root@tc1:/MyEngine/textsim# vi engine.json
 ```
